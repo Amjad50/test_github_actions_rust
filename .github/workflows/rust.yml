@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
 
 jobs:
   build:
@@ -15,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: apt helper action
+      uses: ryankurte/action-apt@v0.1.0
+      with:
+        packages: libsfml-dev libcsfml-dev libasound2-dev
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
